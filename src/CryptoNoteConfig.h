@@ -11,21 +11,21 @@ const uint64_t DIFFICULTY_TARGET                             = 180; // seconds
 const uint64_t CRYPTONOTE_MAX_BLOCK_NUMBER                   = 500000000;
 const size_t   CRYPTONOTE_MAX_BLOCK_BLOB_SIZE                = 500000000;
 const size_t   CRYPTONOTE_MAX_TX_SIZE                        = 1000000000;
-const uint64_t CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX       = 136; // addresses start with "Pk"
+const uint64_t CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX       = 0x619a831a6e1; // addresses start with "emadcash"
 const size_t   CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW          = 6;
 const uint64_t CRYPTONOTE_BLOCK_FUTURE_TIME_LIMIT            = DIFFICULTY_TARGET * 3;
 const size_t   BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW             = 30;
-const uint64_t MONEY_SUPPLY                                  = UINT64_C(1000000000000);
+const uint64_t MONEY_SUPPLY                                  = UINT64_C(3141592653000);
 
 const size_t   CRYPTONOTE_REWARD_BLOCKS_WINDOW               = 100;
 const size_t   CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE     = 32000; //size of block (bytes) after which reward for block calculated using block size
 const size_t   CRYPTONOTE_COINBASE_BLOB_RESERVED_SIZE        = 600;
-const size_t   CRYPTONOTE_DISPLAY_DECIMAL_POINT              = 2;
+const size_t   CRYPTONOTE_DISPLAY_DECIMAL_POINT              = 3;
 // COIN - number of smallest units in one coin
-const uint64_t COIN                                          = UINT64_C(100);  // pow(10, 8)
+const uint64_t COIN                                          = UINT64_C(1000);  // pow(10, 8)
 const uint64_t MINIMUM_FEE                                   = UINT64_C(1);     // pow(10, 5)
 const uint64_t DEFAULT_DUST_THRESHOLD                        = UINT64_C(1);     // pow(10, 5)
-//const uint64_t GENESIS_BLOCK_REWARD							 = UINT64_C(0);
+const uint64_t GENESIS_BLOCK_REWARD							 = UINT64_C(314159265000);
 
 const uint64_t EXPECTED_NUMBER_OF_BLOCKS_PER_DAY             = 24 * 60 * 60 / DIFFICULTY_TARGET;
 const size_t   DIFFICULTY_WINDOW                             = 240; // blocks
@@ -34,7 +34,7 @@ const size_t   DIFFICULTY_CUT                                = 30;  // timestamp
 const size_t   DIFFICULTY_LAG                                = 15;
 static_assert(2 * DIFFICULTY_CUT <= DIFFICULTY_WINDOW - 2, "Bad DIFFICULTY_WINDOW or DIFFICULTY_CUT");
 
-const uint64_t DEPOSIT_MIN_AMOUNT                            = 25000 * COIN;
+const uint64_t DEPOSIT_MIN_AMOUNT                            = 314000 * COIN;
 const uint32_t DEPOSIT_MIN_TERM                              = 43200;
 const uint32_t DEPOSIT_MAX_TERM                              = DEPOSIT_MIN_TERM;
 const uint64_t DEPOSIT_MIN_TOTAL_RATE_FACTOR                 = 0;
@@ -82,8 +82,8 @@ const uint64_t START_BLOCK_REWARD                            = (UINT64_C(12000) 
 const uint64_t MIN_BLOCK_REWARD                              = (UINT64_C(10) * parameters::COIN);
 const uint64_t REWARD_HALVING_INTERVAL                       = (UINT64_C(132000));
 
-const char     CRYPTONOTE_NAME[]                             = "pennykoin";
-const char     GENESIS_COINBASE_TX_HEX[]                     = "010a01ff0001809f49029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd088071210108f03d181bff7e9a1657cfc944a57095390701da99f47e449a65c3913b739e60";
+const char     CRYPTONOTE_NAME[]                             = "MarchMadCash";
+const char     GENESIS_COINBASE_TX_HEX[]                     = "";
 const uint32_t GENESIS_NONCE                                 = 70;
 
 const uint8_t  TRANSACTION_VERSION_1                         =  1;
@@ -100,8 +100,8 @@ const size_t   BLOCKS_IDS_SYNCHRONIZING_DEFAULT_COUNT        =  10000;  //by def
 const size_t   BLOCKS_SYNCHRONIZING_DEFAULT_COUNT            =  128;    //by default, blocks count in blocks downloading
 const size_t   COMMAND_RPC_GET_BLOCKS_FAST_MAX_COUNT         =  1000;
 
-const int      P2P_DEFAULT_PORT                              = 53280;
-const int      RPC_DEFAULT_PORT                              = 53281;
+const int      P2P_DEFAULT_PORT                              = 31400;
+const int      RPC_DEFAULT_PORT                              = 31415;
 
 const size_t   P2P_LOCAL_WHITE_PEERLIST_LIMIT                =  1000;
 const size_t   P2P_LOCAL_GRAY_PEERLIST_LIMIT                 =  5000;
@@ -123,8 +123,8 @@ const uint32_t P2P_IDLE_CONNECTION_KILL_INTERVAL             = (5 * 60);      //
 const char     P2P_STAT_TRUSTED_PUB_KEY[]                    = "0000000000000000000000000000000000000000000000000000000000000000";
 
 const std::initializer_list<const char*> SEED_NODES = {
-  "seed1.pennykoin.com:53280",
-  "seed2.pennykoin.com:53280",
+  "54.183.218.109:31400",
+  "3.135.234.24:31400",
 
 
 };
@@ -137,26 +137,6 @@ struct CheckpointData {
 #ifdef __GNUC__
 __attribute__((unused))
 #endif
-
-// You may add here other checkpoints using the following format:
-// {<block height>, "<block hash>"},
-const std::initializer_list<CheckpointData> CHECKPOINTS = {
-
-  { 680, "b5c5635f1de8934468b35c5e4ae48f4fc6e47ae21d85d0e1b563835f2b40f88d" },
-  { 1550, "3576f6075b79223a3bbf9b7404b0a0687eb6f20b7cec0c07ddbcc6ed8ae59430" },
-  { 4216, "4c2c769b66b43e1d07f1f9233c089ebf8a6ebfd221513bf66078d672b2a25396" },
-  { 7279, "8a577fee7dc3e5a07829b5e2abdebe7d11efb31b25d0943d4d8e6473da8ee6bf" },
-  { 13924, "66c3bcbdca9a6b62da0e081729ac08db8aa70da0f89e1870b9753053c4d33624" },
-   { 24270, "c8b6d4628e8c8f3f8874631eb09a60df12fa48a3daae2ea03e1fdc03fba5799b" },
- { 32000, "2102a559fdc4cb81eebd525cb4edf8b328c86a503ce07813882d7515e7cb1ed1" },
-  { 40000, "b9c7772411b3c334240933b59b3b0293124989da1e68d499b7798d46867f0ccc" },
-  { 49000, "e509325b2053683ff2d626438a9d71a0e5e7a24831a24ef84d3d7750a4c1ea5c" },
-  { 57000, "a5dcd626dd46faf6fc74b012d5a965452522d9b9c59f27239e8ba4616e9d475d" },
-  { 65000, "4b99f73637509ad543feeeefa4df023bff59b58f071c7765f25caca9ef93afef" },
-  { 73000, "a74d1085be319ad4cd766b6d238e45760812005aacd748415ff45c4b257e7b39" },
-  { 81000, "87f736c9114cd41640552fbbfc54e872c4fa08942f7c1cf2bba6290a6473b16a" },
-  { 95000, "fc94c5e01dc078af4eb754ba5b6e4d24abacd37b6504e4fe3a4273adf1faf68c" }
-};
 
 } // CryptoNote
 
